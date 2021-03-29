@@ -1,0 +1,28 @@
+一、从新学些vue3，并使用vite复制vue3的例子，制作笔记和要点、未熟悉的知识点。
+
+
+二、ES6相关笔记，千古一号相关笔记、
+
+
+三、DOM编程 重要 能与web渗透联系在一起
+
+
+四、element-plus使用及源码（PC端） 、vant相关笔记和源码（移动端）
+
+
+五、后端：服务器、HTTP相关笔记、
+
+javascript大小写敏感，它是一种区分大小写的语言
+
+搜索   例子：document +stackoverflow
+
+
+https://developer.mozilla.org/zh-CN/docs/Glossary/Scope  作用域
+闭包 
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/position position
+
+面包屑导航
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navigation
+
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/Containing_block
