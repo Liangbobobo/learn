@@ -1,0 +1,23 @@
+https://blog.csdn.net/happy_fb/article/details/108860829
+
+更新源
+修改mirrorlist.msys
+
+利用UltraEdit或者类似工具打开这mirrorlist.msys文件。在最上面，注意是最上面增加
+
+Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/msys/$arch
+修改mirrorlist.mingw32
+
+在最上面增加
+
+Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/i686
+修改mirrorlist.mingw64
+
+在最上面增加
+
+Server = https://mirrors.tuna.tsinghua.edu.cn/msys2/mingw/x86_64
+应用更新
+
+重新运行D:\msys64\msys2.exe。然后再运行好的环境中输入下列命令，更新即可。现在真的是速度飞快。
+
+pacman -Syu

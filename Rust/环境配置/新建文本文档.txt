@@ -1,0 +1,15 @@
+
+
+打开Msys2命令行窗口。
+输入
+pacman -Ss gdb
+如果已安装gdb，则显示的列表中会有
+msys/gdb 7.12.1-1 (base-devel) [installed]
+    GNU Debugger (MSYS2 version)
+或者
+mingw64/mingw-w64-x86_64-gdb 8.2-1 (mingw-w64-x86_64-toolchain) [installed]
+GNU Debugger (mingw-w64)
+
+如果两个都没有，那么执行
+pacman -S gdb 
+安装吧

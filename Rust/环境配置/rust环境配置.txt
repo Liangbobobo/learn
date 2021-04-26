@@ -1,0 +1,81 @@
+Rust环境配置
+
+一、首先使用msys2安装mingw
+https://cloud.tencent.com/developer/ask/34164
+使用MSYS2 安装mingw
+MSYS2 （Minimal SYStem 2） 是一个MSYS的独立改写版本，主要用于 shell 命令行开发环境。同时它也是一个在Cygwin （POSIX 兼容性层） 和 MinGW-w64（从"MinGW-生成"）基础上产生的，追求更好的互操作性的 Windows 软件。
+
+安装msys2后，
+
+更新MSYS2系统文件包：
+pacman --needed -Sy bash pacman pacman-mirrors msys2-runtime
+
+更新系统：
+pacman -Syu
+
+安装64位mingw：
+pacman -S  mingw-w64-x86_64-toolchain
+
+二、
+rustup 安装器   https://rustup.rs/
+卸载 rustup self uninstall
+
+Rust安装在别的盘（https://zhuanlan.zhihu.com/p/29975631）
+https://www.cnblogs.com/delayer/articles/14353864.html
+在系统变量中设置：
+
+    CARGO_HOME := D:\Rust\Cargo
+    RUSTUP_HOME := D:\Rust\Rustup
+
+设置之后再安装rustup
+
+
+三、自定义安装
+https://www.runoob.com/rust/rust-setup.html
+
+
+
+vscode调试rust
+https://www.runoob.com/rust/cargo-tutorial.html
+
+
+launch.json 中的 "miDebuggerPath"修改为C:/msys64/mingw64/bin/gdb.exe
+还需安装 Microsoft 出的c/c++ 扩展
+{ 
+    "version": "0.2.0", 
+    "configurations": [ 
+        { 
+            "name": "(Windows) 启动", 
+            "preLaunchTask": "build", 
+            "type": "cppvsdbg", 
+            "request": "launch", 
+            "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}.exe", 
+            "args": [], 
+            "stopAtEntry": false, 
+            "cwd": "${workspaceFolder}", 
+            "environment": [], 
+            "externalConsole": false 
+        }, 
+        { 
+            "name": "(gdb) 启动", 
+            "type": "cppdbg", 
+            "request": "launch", 
+            "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}.exe", 
+            "args": [], 
+            "stopAtEntry": false, 
+            "cwd": "${workspaceFolder}", 
+            "environment": [], 
+            "externalConsole": false, 
+            "MIMode": "gdb", 
+            "miDebuggerPath": "这里填GDB所在的目录", 
+            "setupCommands": [ 
+                { 
+                    "description": "为 gdb 启用整齐打印", 
+                    "text": "-enable-pretty-printing", 
+                    "ignoreFailures": true 
+                } 
+            ] 
+        } 
+    ] 
+}
+
