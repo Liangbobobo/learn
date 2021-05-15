@@ -8,6 +8,28 @@ A future is a value that may not have finished computing yet. This kind of “as
 Once a future has finished, clients should not poll it again.  
 When using a future, you generally won’t call poll directly, but instead .await the value. 
 
+ A simplified version of the future trait might look something like this:   
+ ```
+
+trait SimpleFuture {
+    type Output;
+    fn poll(&mut self, wake: fn()) -> Poll<Self::Output>;
+}
+
+enum Poll<T> {
+    Ready(T),
+    Pending,
+}
+ ```   
+ Futures can be advanced by calling the poll function, which will drive the future as far towards completion as possible. If the future completes, it returns Poll::Ready(result). If the future is not able to complete yet, it returns Poll::Pending and arranges for the wake() function to be called when the Future is ready to make more progress. When wake() is called, the executor driving the Future will call poll again so that the Future can make more progress.
+
+ Running multiple futures at once or chaining futures together can be implemented via allocation-free state machines, like this:   
+ ```
+
+
+ ```
+
+
 ## The poll method  
  
 The core method of future, poll, attempts to resolve the future into a final value.   
@@ -23,6 +45,14 @@ type Output：The type of value produced on completion.（完成后产生的值�
 This function returns:   
 Poll::Pending if the future is not ready yet   
 Poll::Ready(val) with the result val of this future if it finished successfully.   
+
+
+
+
+
+
+
+
 
 
 
