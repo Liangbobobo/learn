@@ -21,3 +21,30 @@ This kind of reordering is handled transparently透明的 by the CPU.
  In multi-threaded scenarios, you can use two kinds of primitives to deal with synchronization:   
  memory fences to ensure memory accesses are made visible to other CPUs in the right order.   
  atomic operations to ensure simultaneous access to the same memory location doesn’t lead to undefined behavior.
+
+ ## Higher-level synchronization objects
+ Most of the low-level synchronization primitives are quite error-prone易于 and inconvenient to use, which is why the standard library also exposes some higher-level synchronization objects.   
+
+These abstractions can be built out of lower-level primitives. For efficiency, the sync objects in the standard library are usually implemented with help from the operating system’s kernel, which is able to reschedule the threads while they are blocked on acquiring a lock.
+
+The following is an overview of the available synchronization objects:   
+1. Arc:   
+ Atomically Reference-Counted pointer, which can be used in multithreaded environments to prolong延长 the lifetime of some data until all the threads have finished using it.
+
+2. Barrier:   
+Ensures multiple threads will wait for each other to reach a point in the program, before continuing execution all together.
+
+3. Condvar:    
+Condition Variable, providing the ability to block a thread while waiting for an event to occur.
+
+4. mpsc:    
+Multi-producer, single-consumer queues, used for message-based communication. Can provide a lightweight inter-thread synchronisation mechanism, at the cost of some extra memory.
+
+5. Mutex:    
+Mutual Exclusion mechanism, which ensures that at most one thread at a time is able to access some data.
+
+6. Once:   
+Used for thread-safe, one-time initialization of a global variable.
+
+7. RwLock:  
+ Provides a mutual exclusion mechanism which allows multiple readers at the same time, while allowing only one writer at a time. In some cases, this can be more efficient than a mutex.
