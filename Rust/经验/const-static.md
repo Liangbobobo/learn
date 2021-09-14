@@ -41,6 +41,55 @@ https://rust-lang.github.io/rfcs/2000-const-generics.html?highlight=const#when-a
 
 https://rust-lang.github.io/rfcs/2920-inline-const.html?highlight=const#lints-about-placement-of-inline-const
 # inline_const
+Adds a new syntactical element called an "inline const", written as const { ... }, which instructs the compiler to execute the contents of the block at compile-time.     
+An inline const can be used as an expression or anywhere in a pattern任一模式中 where a named const would be allowed.    
+```
+use std::net::Ipv6Addr;
+
+fn mock_ip(use_localhost: bool) -> &'static Ipv6Addr {
+    if use_localhost {
+        &Ipv6Addr::LOCALHOST
+    } else {
+        const { &Ipv6Addr::new(0x2001, 0xdb8, 0, 0, 0, 0, 0, 0) }
+    }
+}
+
+const MMIO_BIT1: u8 = 4;
+const MMIO_BIT2: u8 = 5;
+
+fn main() {
+    match read_mmio() {
+        0 => {}
+        const { 1 << MMIO_BIT1 } => println!("FOO"),
+        const { 1 << MMIO_BIT2 } => println!("BAR"),
+
+        _ => unreachable!(),
+    }
+}
+```
+
+## Motivation
+Rust has const items, which are guaranteed to be initialized at compile-time.    
+Because of this, they can do things that normal variables cannot:     
+1. For example, a reference in a const initializer has the 'static lifetime   
+2. and a const can be used as an array initializer even if the type of the array is not Copy(https://github.com/rust-lang/rfcs/pull/2203)     
+```
+
+fn foo(x: &i32) -> &i32 {
+    const ZERO: &'static i32 = &0;
+    if *x < 0 { ZERO } else { x }
+}
+
+
+fn foo() -> &u32 {
+    const RANGE: Range<i32> = 0..5; // `Range` is not `Copy`
+    let three_ranges = [RANGE; 3];
+}
+```
+
+
+
+
 
 https://rust-lang.github.io/rfcs/2342-const-control-flow.html?highlight=const#require-intermediate-const-fns-to-break-the-eager-const-evaluation
 # const-control-flow

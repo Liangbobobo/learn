@@ -16,12 +16,17 @@ pacman -Syu
 安装64位mingw：
 pacman -S  mingw-w64-x86_64-toolchain
 
+
+
+https://www.msys2.org/
+按照官网步骤下载安装
+
 二、
 rustup 安装器   https://rustup.rs/
 卸载 rustup self uninstall
 
 Rust安装在别的盘（https://zhuanlan.zhihu.com/p/29975631）
-https://www.cnblogs.com/delayer/articles/14353864.html
+
 在系统变量中设置：
 
     CARGO_HOME := D:\Rust\Cargo
