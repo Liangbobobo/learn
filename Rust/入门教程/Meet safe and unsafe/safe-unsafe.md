@@ -8,7 +8,7 @@ You can use unsafe on a block to declare that all unsafe actions performed withi
 
 You can use unsafe on a trait implementation to declare that the implementation upholds the trait's contract. For instance, that a type implementing Send is really safe to move to another thread.
 
-The standard library has a number of unsafe functions, including:    
+### The standard library has a number of unsafe functions, including:    
 slice::get_unchecked, which performs unchecked indexing, allowing memory safety to be freely violated.   
 mem::transmute reinterprets some value as having a given type, bypassing type safety in arbitrary ways以任意方式绕过类型安全 (see conversions for details).    
 Every raw pointer to a sized type has an offset method that invokes Undefined Behavior if the passed offset is not "in bounds".   

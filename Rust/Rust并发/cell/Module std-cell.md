@@ -8,7 +8,8 @@ This is enforced by the Rust compiler. However, there are situations where this 
 
 
 Shareable mutable containers exist to permit mutability in a controlled manner, even in the presence of aliasing.    
-Both ```Cell<T>``` and ```RefCell<T>``` allow doing this in a single-threaded way. However, neither ```Cell<T> ```nor ```RefCell<T>``` are thread safe (they do not implement Sync).    
+Both ```Cell<T>``` and ```RefCell<T>``` allow doing this in a single-threaded way.    
+However, neither ```Cell<T> ```nor ```RefCell<T>``` are thread safe (they do not implement Sync).    
 If you need to do aliasing and mutation between multiple threads it is possible to use ```Mutex<T>```, ```RwLock<T> ```or atomic types.
 
 Values of the ```Cell<T> and RefCell<T> ```types may be mutated through shared references (i.e. the common &T type), whereas most Rust types can only be mutated through unique (&mut T) references.    
